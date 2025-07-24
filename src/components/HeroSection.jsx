@@ -1,4 +1,3 @@
-import React from "react";
 import "./HeroSection.css";
 
 const HeroSection = () => {
@@ -10,14 +9,12 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="hero-section">
-      {/* Background Pattern */}
+    <div className="hero-section" id="hero">
       <div className="hero-background">
         <div className="hero-pattern hero-pattern-1"></div>
         <div className="hero-pattern hero-pattern-2"></div>
       </div>
 
-      {/* Navigation */}
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-brand">
@@ -51,23 +48,14 @@ const HeroSection = () => {
         </div>
       </nav>
 
-      {/* Hero Content */}
       <div className="hero-content">
         <div className="hero-text">
-          {/* Main Heading */}
           <h1 className="hero-title">
-            Twoje Codzienne
-            <span className="hero-title-accent">Zakupy Świeżości</span>
-            <span className="hero-title-location">w Groniu</span>
+            Sklep U Pipi
+            <span className="hero-title-motto">Szybkie i Tanie Zakupy</span>
           </h1>
+          <p className="hero-subtitle">Codzienne zakupy w dobrej cenie</p>
 
-          {/* Subtitle */}
-          <p className="hero-subtitle">
-            Lokalny sklep, gdzie znajdziesz świeże produkty i zawsze dostaniesz
-            pomoc przy wyborze
-          </p>
-
-          {/* CTA Buttons */}
           <div className="hero-buttons">
             <button
               className="btn btn-primary"
@@ -88,35 +76,12 @@ const HeroSection = () => {
             </button>
           </div>
 
-          {/* Scroll Indicator */}
           <div className="scroll-indicator">
             <div className="scroll-mouse">
               <div className="scroll-wheel"></div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="floating-element floating-1"></div>
-      <div className="floating-element floating-2"></div>
-      <div className="floating-element floating-3"></div>
-      <div className="floating-element floating-4"></div>
-
-      {/* Temporary sections for testing scroll */}
-      <div id="promotions" className="temp-section">
-        <h2>Aktualne Promocje</h2>
-        <p>Tu będą najnowsze promocje i oferty...</p>
-      </div>
-
-      <div id="assortment" className="temp-section">
-        <h2>Nasz Asortyment</h2>
-        <p>Tu będzie lista produktów...</p>
-      </div>
-
-      <div id="hours" className="temp-section">
-        <h2>Sekcja Godziny</h2>
-        <p>Tu będą godziny otwarcia...</p>
       </div>
     </div>
   );

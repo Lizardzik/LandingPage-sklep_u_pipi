@@ -1,39 +1,15 @@
-/* CSS Variables */
-:root {
-  --primary-green: #1b5e20;
-  --secondary-green: #2e7d32;
-  --accent-red: #ff5722;
-  --text-dark: #000000;
-  --text-light: #333333;
-  --white: #ffffff;
-  --bg-light: #f8f9fa;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --gradient-primary: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
-}
-
-/* Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: var(--text-dark);
-  overflow-x: hidden;
-}
-
-/* Hero Section */
 .hero-section {
   min-height: 100vh;
-  background: var(--gradient-primary);
+  background: linear-gradient(rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.7)),
+    url("../Pictures/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 70px;
 }
 
-/* Background Patterns */
 .hero-background {
   position: absolute;
   inset: 0;
@@ -59,99 +35,6 @@ body {
   transform: rotate(-12deg) translateY(-8rem);
 }
 
-/* Navigation */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(45, 90, 39, 0.1);
-  box-shadow: var(--shadow);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.nav-logo {
-  width: 2.5rem;
-  height: 2.5rem;
-  background: var(--secondary-green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-icon {
-  font-size: 1.25rem;
-}
-
-.brand-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-green);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 500;
-  transition: color 0.3s ease;
-  position: relative;
-}
-
-.nav-link:hover {
-  color: var(--accent-red);
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-red);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.mobile-menu-btn {
-  display: none;
-}
-
-.hamburger {
-  font-size: 1.5rem;
-  color: var(--primary-green);
-  cursor: pointer;
-}
-
-/* Hero Content */
 .hero-content {
   position: relative;
   z-index: 10;
@@ -168,7 +51,6 @@ body {
   margin: 0 auto;
 }
 
-/* Hero Title */
 .hero-title {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: bold;
@@ -178,10 +60,11 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.hero-title-accent {
+.hero-title-motto {
   display: block;
   color: var(--accent-red);
   animation: glow 2s ease-in-out infinite alternate;
+  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
 .hero-title-location {
@@ -199,7 +82,6 @@ body {
   }
 }
 
-/* Hero Subtitle */
 .hero-subtitle {
   font-size: clamp(1.125rem, 3vw, 1.5rem);
   color: rgba(255, 255, 255, 0.9);
@@ -210,7 +92,6 @@ body {
   line-height: 1.6;
 }
 
-/* Hero Buttons */
 .hero-buttons {
   display: flex;
   flex-direction: column;
@@ -220,61 +101,6 @@ body {
   margin-bottom: 4rem;
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  min-width: 280px;
-  justify-content: center;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-}
-
-.btn-primary {
-  background: var(--accent-red);
-  color: var(--white);
-}
-
-.btn-primary:hover {
-  background: #e64a19;
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
-}
-
-.btn-secondary:hover {
-  background: var(--white);
-  color: var(--primary-green);
-}
-
-.btn-icon {
-  font-size: 1.25rem;
-}
-
-.btn-arrow {
-  transition: transform 0.3s ease;
-}
-
-.btn:hover .btn-arrow {
-  transform: translateX(4px);
-}
-
-/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -333,101 +159,7 @@ body {
   }
 }
 
-/* Floating Elements */
-.floating-element {
-  position: absolute;
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-}
-
-.floating-1 {
-  top: 5rem;
-  left: 2.5rem;
-  width: 5rem;
-  height: 5rem;
-  background: rgba(255, 255, 255, 0.1);
-  animation-delay: 0s;
-}
-
-.floating-2 {
-  top: 10rem;
-  right: 5rem;
-  width: 4rem;
-  height: 4rem;
-  background: rgba(255, 87, 34, 0.2);
-  animation-delay: 1s;
-}
-
-.floating-3 {
-  bottom: 10rem;
-  left: 5rem;
-  width: 3rem;
-  height: 3rem;
-  background: rgba(255, 255, 255, 0.1);
-  animation-delay: 2s;
-}
-
-.floating-4 {
-  bottom: 5rem;
-  right: 2.5rem;
-  width: 6rem;
-  height: 6rem;
-  background: rgba(46, 125, 50, 0.1);
-  animation-delay: 0.5s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/* Temporary Sections */
-.temp-section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-light);
-  padding: 2rem;
-}
-
-.temp-section:nth-child(even) {
-  background: var(--white);
-}
-
-.temp-section h2 {
-  font-size: 2.5rem;
-  color: var(--primary-green);
-  margin-bottom: 1rem;
-}
-
-.temp-section p {
-  font-size: 1.25rem;
-  color: var(--text-light);
-}
-
-/* Responsive Design */
-@media (min-width: 640px) {
-  .hero-buttons {
-    flex-direction: row;
-  }
-}
-
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-
   .hero-title {
     font-size: clamp(2rem, 8vw, 3rem);
   }
@@ -440,29 +172,10 @@ body {
   .hero-buttons {
     gap: 1rem;
   }
-
-  .btn {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
-    min-width: 250px;
-  }
-
-  .floating-element {
-    display: none;
-  }
 }
 
 @media (max-width: 480px) {
-  .nav-container {
-    padding: 0 1rem;
-  }
-
   .hero-content {
     padding: 0 1rem;
-  }
-
-  .btn {
-    min-width: 220px;
-    padding: 0.75rem 1.25rem;
   }
 }
