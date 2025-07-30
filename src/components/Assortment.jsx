@@ -1,5 +1,5 @@
 import React from "react";
-import "./Assortment.css";
+import "../components/css/Assortment.css";
 
 const categories = [
   { icon: "🧀", name: "Nabiał", desc: "Mleko, jogurty, serki" },

@@ -1,4 +1,4 @@
-import "./HeroSection.css";
+import "../components/css/HeroSection.css";
 
 const HeroSection = () => {
   const scrollToSection = (sectionId) => {
@@ -28,14 +28,14 @@ const HeroSection = () => {
             <a href="#hero" className="nav-link">
               Strona Główna
             </a>
-            <a href="#promotions" className="nav-link">
-              Promocje
-            </a>
             <a href="#assortment" className="nav-link">
               Asortyment
             </a>
             <a href="#hours" className="nav-link">
               Godziny
+            </a>
+            <a href="#promotions" className="nav-link">
+              Promocje
             </a>
             <a href="#contact" className="nav-link">
               Kontakt

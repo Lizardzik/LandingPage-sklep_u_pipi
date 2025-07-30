@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./Gallery.css";
+import "../components/css/Gallery.css";
 
 import slajd1 from "../Pictures/slajd1.jpg";
 import slajd2 from "../Pictures/slajd2.jpg";

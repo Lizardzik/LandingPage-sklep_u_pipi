@@ -9,6 +9,9 @@
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   --gradient-primary: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
 }
+html {
+  scroll-behavior: smooth;
+}
 
 * {
   margin: 0;

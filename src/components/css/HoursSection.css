@@ -1,0 +1,247 @@
+/* HoursSection.css */
+.hours-section {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(27, 94, 32, 0.05) 0%,
+    rgba(27, 94, 32, 0.03) 100%
+  );
+  padding: 4rem 2rem;
+  text-align: center;
+  scroll-margin-top: 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hours-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.hours-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hours-title {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 10;
+  font-weight: bold;
+}
+
+.hours-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hours-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hours-card {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hours-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hours-card-header {
+  background: var(--primary-green);
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.hours-icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto 0.5rem;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.hours-card-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hours-list {
+  background: var(--white);
+}
+
+.hours-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.hours-item:hover {
+  background: rgba(27, 94, 32, 0.05);
+  transform: translateX(5px);
+}
+
+.hours-item:last-child {
+  border-bottom: none;
+}
+
+.hours-item-current {
+  background: rgba(27, 94, 32, 0.1);
+  border-left: 4px solid var(--primary-green);
+  position: relative;
+}
+
+.hours-item-current::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.hours-day {
+  font-weight: 500;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hours-day-current {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+.hours-badge {
+  background: var(--accent-orange);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 4px rgba(255, 69, 0, 0.3);
+}
+
+.hours-time {
+  color: var(--text-light);
+  font-family: "Courier New", monospace;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.hours-info {
+  margin-top: 2rem;
+  background: rgba(27, 94, 32, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.hours-info-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.hours-info-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary-green);
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.hours-info-text {
+  flex: 1;
+}
+
+.hours-info-title {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.hours-info-description {
+  color: var(--text-light);
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .hours-section {
+    padding: 3rem 1rem;
+  }
+
+  .hours-title {
+    font-size: 2rem;
+  }
+
+  .hours-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .hours-item {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hours-day {
+    width: 100%;
+  }
+
+  .hours-time {
+    align-self: flex-end;
+    font-size: 1rem;
+  }
+
+  .hours-info-content {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hours-info-icon {
+    align-self: flex-start;
+  }
+}
