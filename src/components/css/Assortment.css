@@ -1,10 +1,6 @@
 .assortment-section {
   min-height: 100vh;
-  background: linear-gradient(
-    180deg,
-    rgba(27, 94, 32, 0.05) 0%,
-    rgba(27, 94, 32, 0.03) 100%
-  );
+  background-color: #fffaf7;
   padding: 4rem 2rem;
   text-align: center;
   scroll-margin-top: 70px;
@@ -14,7 +10,7 @@
 
 .assortment-section h2 {
   font-size: 2.5rem;
-  color: var(--primary-green);
+  color: #d13b1f;
   margin-bottom: 2.5rem;
   position: relative;
   z-index: 10;
@@ -56,13 +52,13 @@
 .card-name {
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--text-dark);
+  color: #2b1c1a;
   margin-bottom: 0.5rem;
 }
 
 .card-desc {
   font-size: 0.95rem;
-  color: var(--text-light);
+  color: rgba(43, 28, 26, 0.7);
   text-align: center;
 }
 

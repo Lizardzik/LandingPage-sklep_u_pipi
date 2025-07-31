@@ -3,8 +3,9 @@ import HeroSection from "./components/HeroSection";
 import Assortment from "./components/Assortment";
 import Gallery from "./components/Gallery";
 import HoursSection from "./components/HoursSection";
-import Promotions from "./components/Promotions";
+import Occasions from "./components/Occasions";
 import Reviews from "./components/Reviews";
+import ContactInfo from "./components/ContactInfo";
 import "./App.css";
 
 function App() {
@@ -14,8 +15,15 @@ function App() {
       <Assortment />
       <Gallery />
       <HoursSection />
-      <Promotions />
+      <Occasions />
       <Reviews />
+      <ContactInfo />
+
+      <footer className="app-footer">
+        <div className="app-footer-content">
+          © 2025 Sklep u Pipi. Wszystkie prawa zastrzeżone.
+        </div>
+      </footer>
     </div>
   );
 }

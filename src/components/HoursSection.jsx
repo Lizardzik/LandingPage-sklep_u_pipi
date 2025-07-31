@@ -75,7 +75,6 @@ const HoursSection = () => {
               <div className="hours-info-text">
                 <h4 className="hours-info-title">Informacje dodatkowe</h4>
                 <p className="hours-info-description">
-                  W okresie świątecznym godziny otwarcia mogą ulec zmianie.
                   Aktualne informacje zawsze dostępne w sklepie.
                 </p>
               </div>

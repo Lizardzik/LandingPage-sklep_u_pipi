@@ -19,7 +19,7 @@ const HeroSection = () => {
         <div className="nav-container">
           <div className="nav-brand">
             <div className="nav-logo">
-              <span className="logo-icon">🛒</span>
+              <img src="/smallLogo.png" alt="Logo" className="logo-image" />
             </div>
             <span className="brand-text">Sklep U Pipi</span>
           </div>
@@ -34,8 +34,8 @@ const HeroSection = () => {
             <a href="#hours" className="nav-link">
               Godziny
             </a>
-            <a href="#promotions" className="nav-link">
-              Promocje
+            <a href="#occasions" className="nav-link">
+              Okazje cenowe
             </a>
             <a href="#contact" className="nav-link">
               Kontakt

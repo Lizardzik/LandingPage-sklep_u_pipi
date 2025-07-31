@@ -1,7 +1,7 @@
 /* Reviews.css */
 .reviews-section {
   min-height: 100vh;
-  background: var(--white);
+  background: #fffaf7;
   padding: 4rem 2rem;
   text-align: center;
   scroll-margin-top: 70px;
@@ -22,7 +22,7 @@
 
 .reviews-title {
   font-size: 2.5rem;
-  color: var(--primary-green);
+  color: #d13b1f;
   margin-bottom: 2rem;
   font-weight: bold;
 }
@@ -46,8 +46,8 @@
 }
 
 .star-filled {
-  color: #ffd700;
-  filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+  color: #e8c875;
+  filter: drop-shadow(0 0 3px rgba(232, 200, 117, 0.5));
 }
 
 .star-empty {
@@ -61,17 +61,17 @@
 .rating-number {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--text-dark);
+  color: #2b1c1a;
 }
 
 .rating-source {
-  color: var(--text-light);
+  color: rgba(43, 28, 26, 0.7);
   font-size: 1rem;
 }
 
 .reviews-subtitle {
   font-size: 1.25rem;
-  color: var(--text-light);
+  color: rgba(43, 28, 26, 0.7);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -90,7 +90,7 @@
   padding: 2rem;
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
-  border: 1px solid rgba(27, 94, 32, 0.1);
+  border: 1px solid rgba(209, 59, 31, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -102,13 +102,13 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary-green) 0%, #ffd700 100%);
+  background: linear-gradient(90deg, #d13b1f 0%, #e8c875 100%);
 }
 
 .review-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  border-color: var(--primary-green);
+  border-color: #d13b1f;
 }
 
 .review-header {
@@ -130,11 +130,11 @@
 .quote-icon {
   font-size: 1.5rem;
   opacity: 0.3;
-  color: var(--primary-green);
+  color: #d13b1f;
 }
 
 .review-comment {
-  color: var(--text-light);
+  color: rgba(43, 28, 26, 0.7);
   margin-bottom: 1.5rem;
   font-style: italic;
   line-height: 1.6;
@@ -158,14 +158,14 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--primary-green);
+  background: #d13b1f;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   font-size: 0.9rem;
-  box-shadow: 0 2px 8px rgba(27, 94, 32, 0.3);
+  box-shadow: 0 2px 8px rgba(209, 59, 31, 0.3);
 }
 
 .reviewer-details {
@@ -174,13 +174,13 @@
 
 .reviewer-name {
   font-weight: 600;
-  color: var(--text-dark);
+  color: #2b1c1a;
   margin: 0;
   font-size: 0.95rem;
 }
 
 .review-date {
-  color: var(--text-light);
+  color: rgba(43, 28, 26, 0.7);
   margin: 0;
   font-size: 0.85rem;
 }
@@ -188,11 +188,11 @@
 .reviews-cta {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid rgba(27, 94, 32, 0.1);
+  border-top: 1px solid rgba(209, 59, 31, 0.1);
 }
 
 .google-reviews-btn {
-  background: linear-gradient(135deg, var(--primary-green) 0%, #22c55e 100%);
+  background: linear-gradient(135deg, #d13b1f 0%, #e8c875 100%);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -205,13 +205,13 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+  box-shadow: 0 4px 15px rgba(209, 59, 31, 0.3);
 }
 
 .google-reviews-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
-  background: linear-gradient(135deg, #22c55e 0%, var(--primary-green) 100%);
+  box-shadow: 0 6px 20px rgba(209, 59, 31, 0.4);
+  background: linear-gradient(135deg, #e8c875 0%, #d13b1f 100%);
 }
 
 .google-reviews-btn:active {
@@ -223,7 +223,7 @@
 }
 
 .reviews-note {
-  color: var(--text-light);
+  color: rgba(43, 28, 26, 0.7);
   font-size: 0.9rem;
   font-style: italic;
   margin: 0;
@@ -242,8 +242,8 @@
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 3px solid rgba(27, 94, 32, 0.1);
-  border-top: 3px solid var(--primary-green);
+  border: 3px solid rgba(209, 59, 31, 0.1);
+  border-top: 3px solid #d13b1f;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
