@@ -10,7 +10,7 @@ const Reviews = () => {
   const fetchGoogleReviews = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/api/google-reviews");
+      const response = await fetch("/api/google-reviews");
       const data = await response.json();
 
       setReviews(data.reviews);
