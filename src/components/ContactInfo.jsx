@@ -31,15 +31,15 @@ const ContactInfo = () => {
   };
 
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section common-section-padding" id="contact">
       <div className="contact-container">
         <div className="contact-header">
-          <h2 className="contact-title">Gdzie nas można znaleźć</h2>
+          <h2 className="common-section-title">Gdzie nas można znaleźć</h2>
         </div>
 
         <div className="contact-grid">
           <div className="contact-info">
-            <div className="contact-card">
+            <div className="contact-card common-hover-transform">
               <div className="contact-card-content">
                 <div className="contact-icon contact-icon-address">
                   <svg
@@ -88,7 +88,7 @@ const ContactInfo = () => {
               </div>
             </div>
 
-            <div className="contact-card">
+            <div className="contact-card common-hover-transform">
               <div className="contact-card-content">
                 <div className="contact-icon contact-icon-mail">
                   <svg
@@ -112,9 +112,10 @@ const ContactInfo = () => {
               <ul className="services-list">
                 <li>Bezpłatny parking przed sklepem</li>
                 <li>Dostęp dla osób niepełnosprawnych</li>
-                <li>Odbiór osobisty z punktu Orlen Paczka, Allegro Smart</li>
+                <li>Odbiór osobisty z punktu Orlen Paczka, Allegro One</li>
                 <li>Możliwość wysyłki przez Orlen Paczka </li>
                 <li>Płatność kartą, BLIK-iem i gotówką</li>
+                <li>Sprzedaż starterów telefonicznych i ich rejestracja</li>
               </ul>
             </div>
           </div>

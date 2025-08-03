@@ -57,10 +57,10 @@ const Reviews = () => {
   }
 
   return (
-    <section className="reviews-section">
+    <section className="reviews-section common-section-padding">
       <div className="reviews-container">
         <div className="reviews-header">
-          <h2 className="reviews-title">Co mówią klienci</h2>
+          <h2 className="common-section-title">Opinie naszych klientów</h2>
 
           <div className="reviews-rating">
             <div className="rating-stars">
@@ -75,7 +75,7 @@ const Reviews = () => {
 
         <div className="reviews-grid">
           {reviews.map((review, index) => (
-            <div key={index} className="review-card">
+            <div key={index} className="review-card common-hover-transform">
               <div className="review-header">
                 <div className="review-stars">{renderStars(review.rating)}</div>
                 <div className="quote-icon">💬</div>

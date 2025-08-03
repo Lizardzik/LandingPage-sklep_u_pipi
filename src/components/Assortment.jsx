@@ -22,11 +22,14 @@ const categories = [
 
 const Assortment = () => {
   return (
-    <section id="assortment" className="assortment-section">
-      <h2>Nasz Asortyment</h2>
+    <section
+      id="assortment"
+      className="assortment-section common-section-padding"
+    >
+      <h2 className="common-section-title">Nasz Asortyment</h2>
       <div className="assortment-grid">
         {categories.map((item, index) => (
-          <div className="assortment-card" key={index}>
+          <div className="assortment-card common-hover-transform" key={index}>
             <span className="card-icon">{item.icon}</span>
             <span className="card-name">{item.name}</span>
             <span className="card-desc">{item.desc}</span>

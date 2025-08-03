@@ -1,8 +1,7 @@
 .hero-section {
-  min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(rgba(209, 59, 31, 0.3), rgba(232, 200, 117, 0.3)),
     url("../../Pictures/LogoBanner.jpg");
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -42,7 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: clamp(70vh, 100dvh, 1000px);
   padding: 0 1.5rem;
 }
 
@@ -50,6 +49,10 @@
   text-align: center;
   max-width: 64rem;
   margin: 0 auto;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(2px);
 }
 
 .hero-title {
@@ -58,9 +61,13 @@
   color: var(--white);
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(43, 28, 26, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(0, 0, 0, 0.8),
+    1px -1px 2px rgba(0, 0, 0, 0.8), -1px 1px 2px rgba(0, 0, 0, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-
+.hero-subtitle {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(0, 0, 0, 0.8);
+}
 .hero-title-motto {
   display: block;
   color: #e8c875;
@@ -115,7 +122,7 @@
 .scroll-mouse {
   width: 1.5rem;
   height: 2.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(36, 32, 32, 0.5);
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -125,7 +132,7 @@
 .scroll-wheel {
   width: 0.25rem;
   height: 0.75rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(7, 7, 7, 0.7);
   border-radius: 2px;
   margin-top: 0.5rem;
   animation: scroll-wheel 2s infinite;
@@ -163,17 +170,38 @@
 }
 
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: clamp(2rem, 8vw, 3rem);
+  .hero-content {
+    min-height: auto;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
   }
 
-  .hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+  .hero-section {
+    background-size: cover;
+    background-attachment: scroll;
   }
 
-  .hero-buttons {
-    gap: 1rem;
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    display: none;
+    z-index: 99;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
   }
 }
 

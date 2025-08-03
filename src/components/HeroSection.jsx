@@ -1,10 +1,18 @@
 import "../components/css/HeroSection.css";
+import { useState } from "react";
 
 const HeroSection = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      setMenuOpen(false);
     }
   };
 
@@ -24,26 +32,32 @@ const HeroSection = () => {
             <span className="brand-text">Sklep U Pipi</span>
           </div>
 
-          <div className="nav-links">
-            <a href="#hero" className="nav-link">
+          <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+            <a onClick={() => scrollToSection("hero")} className="nav-link">
               Strona Główna
             </a>
-            <a href="#assortment" className="nav-link">
+            <a
+              onClick={() => scrollToSection("assortment")}
+              className="nav-link"
+            >
               Asortyment
             </a>
-            <a href="#hours" className="nav-link">
+            <a onClick={() => scrollToSection("hours")} className="nav-link">
               Godziny
             </a>
-            <a href="#occasions" className="nav-link">
+            <a
+              onClick={() => scrollToSection("occasions")}
+              className="nav-link"
+            >
               Okazje cenowe
             </a>
-            <a href="#contact" className="nav-link">
+            <a onClick={() => scrollToSection("contact")} className="nav-link">
               Kontakt
             </a>
           </div>
 
-          <div className="mobile-menu-btn">
-            <span className="hamburger">☰</span>
+          <div className="mobile-menu-btn" onClick={toggleMenu}>
+            <span className="hamburger">{menuOpen ? "✕" : "☰"}</span>
           </div>
         </div>
       </nav>
@@ -75,12 +89,11 @@ const HeroSection = () => {
               <span className="btn-arrow">→</span>
             </button>
           </div>
-
-          <div className="scroll-indicator">
-            <div className="scroll-mouse">
-              <div className="scroll-wheel"></div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div className="scroll-indicator">
+        <div className="scroll-mouse">
+          <div className="scroll-wheel"></div>
         </div>
       </div>
     </div>

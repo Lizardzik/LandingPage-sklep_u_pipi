@@ -29,17 +29,17 @@ const HoursSection = () => {
   const currentDay = getCurrentDay();
 
   return (
-    <section id="hours" className="hours-section">
+    <section id="hours" className="hours-section common-section-padding">
       <div className="hours-container">
         <div className="hours-header">
-          <h2 className="hours-title">Kiedy jesteśmy otwarci?</h2>
+          <h2 className="common-section-title">Kiedy jesteśmy otwarci?</h2>
           <p className="hours-subtitle">
             Zapraszamy codziennie przez cały tydzień
           </p>
         </div>
 
-        <div className="hours-content">
-          <div className="hours-card">
+        <div className="hours-content ">
+          <div className="hours-card common-hover-transform">
             <div className="hours-card-header">
               <Clock className="hours-icon" />
               <h3 className="hours-card-title">Godziny Otwarcia</h3>

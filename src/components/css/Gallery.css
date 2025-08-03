@@ -1,22 +1,10 @@
 .gallery-section {
   position: relative;
-  padding: 60px 20px;
   background: linear-gradient(
     180deg,
     rgba(209, 59, 31, 0.07) 0%,
     rgba(209, 59, 31, 0.03) 100%
   );
-  overflow: hidden;
-  text-align: center;
-}
-
-.gallery-title {
-  font-size: 2.5rem;
-  color: #d13b1f;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 10;
-  font-weight: bold;
 }
 
 .gallery-container {

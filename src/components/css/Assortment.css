@@ -1,19 +1,5 @@
 .assortment-section {
-  min-height: 100vh;
-  background-color: #fffaf7;
-  padding: 4rem 2rem;
-  text-align: center;
-  scroll-margin-top: 70px;
-  position: relative;
-  overflow: hidden;
-}
-
-.assortment-section h2 {
-  font-size: 2.5rem;
-  color: #d13b1f;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 10;
+  background-color: #faf7f5;
 }
 
 .assortment-grid {
@@ -37,11 +23,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.assortment-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card-icon {

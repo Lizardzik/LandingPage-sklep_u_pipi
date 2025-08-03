@@ -1,12 +1,6 @@
 /* HoursSection.css */
 .hours-section {
-  min-height: 100vh;
-  background: #faf7f5;
-  padding: 4rem 2rem;
-  text-align: center;
-  scroll-margin-top: 70px;
-  position: relative;
-  overflow: hidden;
+  background: #fffaf7;
 }
 
 .hours-container {
@@ -20,15 +14,6 @@
 .hours-header {
   text-align: center;
   margin-bottom: 4rem;
-}
-
-.hours-title {
-  font-size: 2.5rem;
-  color: #d13b1f;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 10;
-  font-weight: bold;
 }
 
 .hours-subtitle {
@@ -50,11 +35,6 @@
   box-shadow: var(--shadow);
   overflow: hidden;
   transition: all 0.3s ease;
-}
-
-.hours-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 .hours-card-header {
@@ -118,16 +98,6 @@
   width: 4px;
   background: #d13b1f;
   animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
 }
 
 .hours-day {
