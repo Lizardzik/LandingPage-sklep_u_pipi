@@ -115,7 +115,8 @@ const ContactInfo = () => {
                 <li>Odbiór osobisty z punktu Orlen Paczka, Allegro One</li>
                 <li>Możliwość wysyłki przez Orlen Paczka </li>
                 <li>Płatność kartą, BLIK-iem i gotówką</li>
-                <li>Sprzedaż starterów telefonicznych i ich rejestracja</li>
+                <li>Sprzedaż i rejestracja kart SIM</li>
+                <li>Doładowywanie kont telefonicznych</li>
               </ul>
             </div>
           </div>
