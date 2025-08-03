@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Sklep U Pipi - Landing Page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Landing page dla sklepu spożywczego "Sklep U Pipi".
 
-## Available Scripts
+## Opis
 
-In the project directory, you can run:
+Nowoczesna, responsywna strona internetowa prezentująca ofertę i informacje o lokalnym sklepie spożywczym. Strona została zbudowana w React.js i zawiera wszystkie kluczowe informacje potrzebne klientom.
 
-### `npm start`
+## Główne sekcje strony
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🏠 Hero Section (HeroSection.jsx)
+- Główny baner z nawigacją
+- Menu mobilne z hamburgerem
+- Smooth scroll do poszczególnych sekcji
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🛍️ Asortyment (Assortment.jsx)
+Prezentacja  kategorii produktów:
 
-### `npm test`
+### 🕒 Godziny otwarcia (HoursSection.jsx)
+- Interaktywny kalendarz z godzinami otwarcia
+- Podświetlenie aktualnego dnia
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 💰 Okazje cenowe (Occasions.jsx)
+- Aktualne promocje i produkty polecane
+- Zdjęcia produktów z cenami
+- Kategoryzacja ofert
 
-### `npm run build`
+### 📸 Galeria (Gallery.jsx)
+- Slider ze zdjęciami sklepu 
+- Automatyczne przewijanie co 6 sekund
+- Lightbox do powiększania zdjęć
+- Nawigacja strzałkami i kropkami
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📍 Kontakt (ContactInfo.jsx)
+- Pełny adres z integracją Google Maps
+- Przyciski do nawigacji i mapy
+- Lista dodatkowych usług (parking, BLIK, paczki Orlen, itp.)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ⭐ Opinie (Reviews.jsx)
+- Integracja z Google Reviews API
+- Wyświetlanie średniej oceny
+- Możliwość dodania opinii na Google
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Funkcjonalności
 
-### `npm run eject`
+- **Responsywne menu** - hamburger na urządzeniach mobilnych
+- **Smooth scrolling** - płynne przewijanie między sekcjami
+- **Interaktywna mapa** - integracja z Google Maps
+- **Galeria zdjęć** - slider z lightboxem
+- **Live API** - pobieranie opinii z Google
+- **Accessibility** - obsługa klawiatury i screen readerów
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Strona została zaprojektowana z myślą o lokalnej społeczności, oferując wszystkie niezbędne informacje w przystępnej i nowoczesnej formie.
