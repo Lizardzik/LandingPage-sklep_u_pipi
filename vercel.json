@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/google-reviews.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
-}
