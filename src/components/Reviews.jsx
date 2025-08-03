@@ -69,8 +69,6 @@ const Reviews = () => {
             <span className="rating-number">{averageRating}</span>
             <span className="rating-source">na Google</span>
           </div>
-
-          <p className="reviews-subtitle">Opinie naszych klientów</p>
         </div>
 
         <div className="reviews-grid">
