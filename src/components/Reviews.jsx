@@ -3,23 +3,31 @@ import "../components/css/Reviews.css";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [averageRating, setAverageRating] = useState(4.8);
+  const [hasError, setHasError] = useState(false);
 
-  // Funkcja do pobierania opinii z Google API
   const fetchGoogleReviews = async () => {
-    setLoading(true);
     try {
       const response = await fetch("/api/google-reviews");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
-      setReviews(data.reviews);
-      setAverageRating(data.averageRating);
-      setLoading(false);
+      if (data && Array.isArray(data.reviews) && data.reviews.length > 0) {
+        setReviews(data.reviews);
+        setAverageRating(data.averageRating || 4.8);
+        setHasError(false);
+      } else {
+        setReviews([]);
+        setHasError(true);
+      }
     } catch (error) {
       console.error("Błąd podczas pobierania opinii:", error);
       setReviews([]);
-      setLoading(false);
+      setHasError(true);
     }
   };
 
@@ -43,17 +51,9 @@ const Reviews = () => {
     window.open(googleReviewUrl, "_blank");
   };
 
-  if (loading) {
-    return (
-      <section className="reviews-section">
-        <div className="reviews-container">
-          <div className="reviews-loading">
-            <div className="loading-spinner"></div>
-            <p>Ładowanie opinii...</p>
-          </div>
-        </div>
-      </section>
-    );
+  // nic nie renderuj, jeśli błąd albo brak recenzji
+  if (hasError || reviews.length === 0) {
+    return null;
   }
 
   return (

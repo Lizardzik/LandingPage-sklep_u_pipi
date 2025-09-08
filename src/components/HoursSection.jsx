@@ -1,32 +1,56 @@
-import React from "react";
-import { Clock, Info } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Clock, Info, ExternalLink } from "lucide-react";
 import "../components/css/HoursSection.css";
 
 const HoursSection = () => {
-  const hours = [
-    { day: "Poniedziałek", time: "8:00 - 21:00" },
-    { day: "Wtorek", time: "8:00 - 21:00" },
-    { day: "Środa", time: "8:00 - 21:00" },
-    { day: "Czwartek", time: "8:00 - 21:00" },
-    { day: "Piątek", time: "8:00 - 21:00" },
-    { day: "Sobota", time: "8:00 - 21:00" },
-    { day: "Niedziela", time: "15:00 - 19:00" },
-  ];
+  const [hours, setHours] = useState([]);
+  const [openNow, setOpenNow] = useState(null);
+  const [hasError, setHasError] = useState(false);
+
+  const fetchGoogleHours = async () => {
+    try {
+      const response = await fetch("/api/google-hours");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data && Array.isArray(data.hours) && data.hours.length > 0) {
+        setHours(data.hours);
+        setOpenNow(data.openNow);
+        setHasError(false);
+      } else {
+        setHours([]);
+        setHasError(true);
+      }
+    } catch (error) {
+      console.error("Błąd pobierania godzin:", error);
+      setHours([]);
+      setHasError(true);
+    }
+  };
+
+  useEffect(() => {
+    fetchGoogleHours();
+  }, []);
 
   const getCurrentDay = () => {
     const days = [
-      "Niedziela",
-      "Poniedziałek",
-      "Wtorek",
-      "Środa",
-      "Czwartek",
-      "Piątek",
-      "Sobota",
+      "niedziela",
+      "poniedziałek",
+      "wtorek",
+      "środa",
+      "czwartek",
+      "piątek",
+      "sobota",
     ];
     return days[new Date().getDay()];
   };
 
   const currentDay = getCurrentDay();
+  const googleMapsUrl = "https://g.page/r/CaLR9b1QR5NmEAE/"; // zmień na swoje
 
   return (
     <section id="hours" className="hours-section common-section-padding">
@@ -38,7 +62,7 @@ const HoursSection = () => {
           </p>
         </div>
 
-        <div className="hours-content ">
+        <div className="hours-content">
           <div className="hours-card common-hover-transform">
             <div className="hours-card-header">
               <Clock className="hours-icon" />
@@ -46,26 +70,37 @@ const HoursSection = () => {
             </div>
 
             <div className="hours-list">
-              {hours.map((item, index) => (
-                <div
-                  key={index}
-                  className={`hours-item ${
-                    item.day === currentDay ? "hours-item-current" : ""
-                  }`}
-                >
-                  <span
-                    className={`hours-day ${
-                      item.day === currentDay ? "hours-day-current" : ""
-                    }`}
-                  >
-                    {item.day}
-                    {item.day === currentDay && (
-                      <span className="hours-badge">Dziś</span>
-                    )}
-                  </span>
-                  <span className="hours-time">{item.time}</span>
-                </div>
-              ))}
+              {hasError ? (
+                <p className="hours-error">
+                  Ojej, mamy problem z pobraniem danych.{" "}
+                  <a href={googleMapsUrl} target="_blank" rel="noreferrer">
+                    Zobacz godziny otwarcia na Google Maps
+                  </a>
+                </p>
+              ) : (
+                hours.map((line, index) => {
+                  const [day, time] = line.split(": ");
+                  const isToday = day.toLowerCase() === currentDay;
+
+                  return (
+                    <div
+                      key={index}
+                      className={`hours-item ${
+                        isToday ? "hours-item-current" : ""
+                      }`}
+                    >
+                      <span
+                        className={`hours-day ${
+                          isToday ? "hours-day-current" : ""
+                        }`}
+                      >
+                        {day}
+                      </span>
+                      <span className="hours-time">{time}</span>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
 

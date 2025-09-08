@@ -111,6 +111,7 @@ const ContactInfo = () => {
               <h4>Dodatkowe Usługi</h4>
               <ul className="services-list">
                 <li>Bezpłatny parking przed sklepem</li>
+                <li>Piwo oraz nalewki regionalne</li>
                 <li>Dostęp dla osób niepełnosprawnych</li>
                 <li>Odbiór osobisty z punktu Orlen Paczka, Allegro One</li>
                 <li>Możliwość wysyłki przez Orlen Paczka </li>

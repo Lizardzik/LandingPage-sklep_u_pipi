@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
+// Google Reviews API endpoint
 app.get("/api/google-reviews", async (req, res) => {
   const placeId = process.env.GOOGLE_PLACE_ID;
   const apiKey = process.env.GOOGLE_API_KEY;
@@ -47,6 +48,33 @@ app.get("/api/google-reviews", async (req, res) => {
     res.status(500).json({ error: "Błąd serwera", details: error.message });
   }
 });
-console.log("API KEY:", process.env.GOOGLE_API_KEY);
+
+// Hours API endpoint
+app.get("/api/google-hours", async (req, res) => {
+  const placeId = process.env.GOOGLE_PLACE_ID;
+  const apiKey = process.env.GOOGLE_API_KEY;
+
+  try {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=opening_hours&language=pl&region=pl&key=${apiKey}`
+    );
+
+    const data = await response.json();
+
+    if (data.status !== "OK") {
+      return res.status(500).json({ error: "Błąd Google API", details: data });
+    }
+
+    const hours = data.result.opening_hours?.weekday_text || [];
+    const openNow = data.result.opening_hours?.open_now ?? null;
+
+    res.json({
+      openNow,
+      hours,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Błąd serwera", details: error.message });
+  }
+});
 
 app.listen(PORT, () => console.log(`Server działa na porcie ${PORT}`));
