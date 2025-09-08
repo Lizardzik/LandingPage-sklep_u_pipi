@@ -52,6 +52,14 @@ const HoursSection = () => {
   const currentDay = getCurrentDay();
   const googleMapsUrl = "https://g.page/r/CaLR9b1QR5NmEAE/";
 
+  const isClosed = (timeString) => {
+    return (
+      timeString &&
+      (timeString.toLowerCase().includes("zamknięte") ||
+        timeString.toLowerCase().includes("closed"))
+    );
+  };
+
   return (
     <section id="hours" className="hours-section common-section-padding">
       <div className="hours-container">
@@ -67,6 +75,25 @@ const HoursSection = () => {
             <div className="hours-card-header">
               <Clock className="hours-icon" />
               <h3 className="hours-card-title">Godziny Otwarcia</h3>
+              {openNow !== null && !hasError && (
+                <div
+                  className={`shop-status ${
+                    openNow ? "shop-open" : "shop-closed"
+                  }`}
+                >
+                  {openNow ? (
+                    <>
+                      <span className="status-dot status-open"></span>
+                      OTWARTE
+                    </>
+                  ) : (
+                    <>
+                      <span className="status-dot status-closed"></span>
+                      ZAMKNIĘTE
+                    </>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="hours-list">
@@ -81,6 +108,7 @@ const HoursSection = () => {
                 hours.map((line, index) => {
                   const [day, time] = line.split(": ");
                   const isToday = day.toLowerCase() === currentDay;
+                  const isDayClosed = isClosed(time);
 
                   return (
                     <div
@@ -96,7 +124,13 @@ const HoursSection = () => {
                       >
                         {day}
                       </span>
-                      <span className="hours-time">{time}</span>
+                      <span
+                        className={`hours-time ${
+                          isDayClosed ? "hours-closed" : ""
+                        }`}
+                      >
+                        {isDayClosed ? "Zamknięte" : time}
+                      </span>
                     </div>
                   );
                 })
