@@ -79,7 +79,7 @@ const HoursSection = () => {
                 </p>
               ) : (
                 hours.map((line, index) => {
-                  const [day, time] = line.split(/:\s*/);
+                  const [day, time] = line.split(": ");
                   const isToday = day.toLowerCase() === currentDay;
 
                   return (
