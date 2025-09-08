@@ -50,7 +50,7 @@ const HoursSection = () => {
   };
 
   const currentDay = getCurrentDay();
-  const googleMapsUrl = "https://g.page/r/CaLR9b1QR5NmEAE/"; // zmień na swoje
+  const googleMapsUrl = "https://g.page/r/CaLR9b1QR5NmEAE/";
 
   return (
     <section id="hours" className="hours-section common-section-padding">
@@ -79,7 +79,7 @@ const HoursSection = () => {
                 </p>
               ) : (
                 hours.map((line, index) => {
-                  const [day, time] = line.split(": ");
+                  const [day, time] = line.split(/:\s*/);
                   const isToday = day.toLowerCase() === currentDay;
 
                   return (
