@@ -1,5 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../components/css/ContactInfo.css";
+
+const fetchServicesFromAPI = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  return [
+    "Bezpłatny parking przed sklepem",
+    "Piwo oraz nalewki regionalne",
+    "Dostęp dla osób niepełnosprawnych",
+    "Odbiór osobisty z punktu Orlen Paczka, Allegro One",
+    "Możliwość wysyłki przez Orlen Paczka",
+    "Płatność kartą, BLIK-iem i gotówką",
+    "Sprzedaż i rejestracja kart SIM",
+    "Doładowywanie kont telefonicznych",
+  ];
+};
+
+const ServicesList = () => {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchServicesFromAPI().then((data) => {
+      setServices(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return <p className="services-loading">Ładowanie usług...</p>;
+  }
+
+  if (services.length === 0) {
+    return <p className="services-loading">Brak dostępnych usług.</p>;
+  }
+
+  return (
+    <ul className="services-list">
+      {services.map((service, index) => (
+        <li key={index}>{service}</li>
+      ))}
+    </ul>
+  );
+};
 
 const ContactInfo = () => {
   const address = "Groń, ul.Kobylarzówka 74, 34-406 Groń-Leśnica";
@@ -15,12 +59,12 @@ const ContactInfo = () => {
 
     if (isMobile) {
       window.open(
-        `https://maps.google.com/maps?daddr=${coordinates}`,
+        `https://maps.google.com/maps?daddr=$$${coordinates}`,
         "_blank"
       );
     } else {
       window.open(
-        `https://www.google.com/maps/dir/?api=1&destination=${coordinates}`,
+        `https://www.google.com/maps/dir/?api=1&destination=$$${coordinates}`,
         "_blank"
       );
     }
@@ -34,7 +78,7 @@ const ContactInfo = () => {
     <section className="contact-section common-section-padding" id="contact">
       <div className="contact-container">
         <div className="contact-header">
-          <h2 className="common-section-title">Gdzie nas można znaleźć</h2>
+          <h2 className="common-section-title">Tu nas znajdziesz</h2>
         </div>
 
         <div className="contact-grid">
@@ -109,16 +153,7 @@ const ContactInfo = () => {
 
             <div className="services-info">
               <h4>Dodatkowe Usługi</h4>
-              <ul className="services-list">
-                <li>Bezpłatny parking przed sklepem</li>
-                <li>Piwo oraz nalewki regionalne</li>
-                <li>Dostęp dla osób niepełnosprawnych</li>
-                <li>Odbiór osobisty z punktu Orlen Paczka, Allegro One</li>
-                <li>Możliwość wysyłki przez Orlen Paczka </li>
-                <li>Płatność kartą, BLIK-iem i gotówką</li>
-                <li>Sprzedaż i rejestracja kart SIM</li>
-                <li>Doładowywanie kont telefonicznych</li>
-              </ul>
+              <ServicesList />
             </div>
           </div>
 

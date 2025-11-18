@@ -6,12 +6,14 @@ import HoursSection from "./components/HoursSection";
 import Occasions from "./components/Occasions";
 import Reviews from "./components/Reviews";
 import ContactInfo from "./components/ContactInfo";
+import AboutSection from "./components/AboutSection";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <HeroSection />
+      <AboutSection />
       <Assortment />
       <Gallery />
       <HoursSection />

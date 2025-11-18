@@ -1,4 +1,3 @@
-/* ContactInfo.css */
 .contact-section {
   background: linear-gradient(
     180deg,
@@ -94,7 +93,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   text-decoration: none;
@@ -150,6 +148,7 @@
   padding: 1.5rem;
   border-radius: 12px;
   border: 1px solid rgba(232, 200, 117, 0.3);
+  text-align: left;
 }
 
 .services-info h4 {
@@ -157,27 +156,38 @@
   color: #2b1c1a;
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
+  text-align: center;
+}
+
+.services-loading {
+  font-style: italic;
+  color: #d13b1f;
+  margin-top: 10px;
+  text-align: left;
 }
 
 .services-list {
-  color: rgba(43, 28, 26, 0.8);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .services-list li {
-  margin-bottom: 0.5rem;
-  list-style: none;
-  padding-left: 1rem;
-  position: relative;
+  margin-bottom: 0.3rem;
+  color: rgba(43, 28, 26, 0.7);
+  padding-left: 1em;
+  text-indent: -1em;
 }
 
 .services-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
+  content: "• ";
   color: #d13b1f;
   font-weight: bold;
+  display: inline-block;
+  width: 1em;
 }
 
 .map-container {

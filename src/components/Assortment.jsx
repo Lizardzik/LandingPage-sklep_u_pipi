@@ -26,13 +26,24 @@ const Assortment = () => {
       id="assortment"
       className="assortment-section common-section-padding"
     >
-      <h2 className="common-section-title">Nasz Asortyment</h2>
+      <div className="assortment-header">
+        <h2 className="common-section-title">Nasz Asortyment</h2>
+        <p className="assortment-subtitle">
+          Oferujemy wszystko, co potrzebne w domu, od świeżych produktów
+          spożywczych po artykuły przemysłowe i chemię.
+        </p>
+      </div>
+
       <div className="assortment-grid">
         {categories.map((item, index) => (
-          <div className="assortment-card common-hover-transform" key={index}>
+          <div
+            className="assortment-card common-hover-transform"
+            key={index}
+            title={`Kategoria: ${item.name}. Dokładniej: ${item.desc}`}
+          >
             <span className="card-icon">{item.icon}</span>
-            <span className="card-name">{item.name}</span>
-            <span className="card-desc">{item.desc}</span>
+            <h3 className="card-name">{item.name}</h3>
+            <p className="card-desc">{item.desc}</p>
           </div>
         ))}
       </div>

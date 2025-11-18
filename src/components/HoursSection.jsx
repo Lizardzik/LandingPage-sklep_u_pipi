@@ -4,8 +4,73 @@ import "../components/css/HoursSection.css";
 
 const HoursSection = () => {
   const [hours, setHours] = useState([]);
-  const [openNow, setOpenNow] = useState(null);
+  const [openStatus, setOpenStatus] = useState(null);
   const [hasError, setHasError] = useState(false);
+
+  const getCurrentDayName = () => {
+    const days = [
+      "niedziela",
+      "poniedziałek",
+      "wtorek",
+      "środa",
+      "czwartek",
+      "piątek",
+      "sobota",
+    ];
+    return days[new Date().getDay()].toLowerCase();
+  };
+
+  const parseTime = (timeStr) => {
+    const match = timeStr.match(/(\d{1,2}):(\d{2})/);
+    if (match) {
+      return parseInt(match[1]) * 60 + parseInt(match[2]);
+    }
+    return null;
+  };
+
+  const calculateOpenStatus = (allHours) => {
+    if (!allHours || allHours.length === 0) return null;
+
+    const currentDayName = getCurrentDayName();
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    const todayHoursLine = allHours.find(
+      (line) => line.split(":")[0].trim().toLowerCase() === currentDayName
+    );
+
+    if (!todayHoursLine) {
+      return false;
+    }
+
+    const timeRange = todayHoursLine
+      .substring(todayHoursLine.indexOf(":") + 1)
+      .trim();
+
+    if (
+      timeRange.toLowerCase().includes("zamknięte") ||
+      timeRange.toLowerCase().includes("closed")
+    ) {
+      return false;
+    }
+
+    const timeParts = timeRange.split(/[\–-]/).map((t) => t.trim());
+
+    if (timeParts.length === 2) {
+      const [openTimeStr, closeTimeStr] = timeParts;
+
+      const openMinutes = parseTime(openTimeStr);
+      const closeMinutes = parseTime(closeTimeStr);
+
+      if (openMinutes !== null && closeMinutes !== null) {
+        if (openMinutes <= currentMinutes && currentMinutes < closeMinutes) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  };
 
   const fetchGoogleHours = async () => {
     try {
@@ -19,8 +84,8 @@ const HoursSection = () => {
 
       if (data && Array.isArray(data.hours) && data.hours.length > 0) {
         setHours(data.hours);
-        setOpenNow(data.openNow);
         setHasError(false);
+        setOpenStatus(calculateOpenStatus(data.hours));
       } else {
         setHours([]);
         setHasError(true);
@@ -34,22 +99,17 @@ const HoursSection = () => {
 
   useEffect(() => {
     fetchGoogleHours();
+
+    const intervalId = setInterval(() => {
+      if (hours.length > 0) {
+        setOpenStatus(calculateOpenStatus(hours));
+      }
+    }, 60000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
-  const getCurrentDay = () => {
-    const days = [
-      "niedziela",
-      "poniedziałek",
-      "wtorek",
-      "środa",
-      "czwartek",
-      "piątek",
-      "sobota",
-    ];
-    return days[new Date().getDay()];
-  };
-
-  const currentDay = getCurrentDay();
+  const currentDay = getCurrentDayName();
   const googleMapsUrl = "https://g.page/r/CaLR9b1QR5NmEAE/";
 
   const isClosed = (timeString) => {
@@ -75,13 +135,13 @@ const HoursSection = () => {
             <div className="hours-card-header">
               <Clock className="hours-icon" />
               <h3 className="hours-card-title">Godziny Otwarcia</h3>
-              {openNow !== null && !hasError && (
+              {openStatus !== null && !hasError && (
                 <div
                   className={`shop-status ${
-                    openNow ? "shop-open" : "shop-closed"
+                    openStatus ? "shop-open" : "shop-closed"
                   }`}
                 >
-                  {openNow ? (
+                  {openStatus ? (
                     <>
                       <span className="status-dot status-open"></span>
                       OTWARTE
@@ -102,6 +162,7 @@ const HoursSection = () => {
                   Ojej, mamy problem z pobraniem danych.{" "}
                   <a href={googleMapsUrl} target="_blank" rel="noreferrer">
                     Zobacz godziny otwarcia na Google Maps
+                    <ExternalLink className="hours-link-icon" />
                   </a>
                 </p>
               ) : (
