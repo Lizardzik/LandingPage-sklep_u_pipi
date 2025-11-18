@@ -14,7 +14,6 @@ import slajd10 from "../Pictures/Gallery/slajd10.jpg";
 import slajd11 from "../Pictures/Gallery/slajd11.jpg";
 import slajd12 from "../Pictures/Gallery/slajd12.jpg";
 import slajd13 from "../Pictures/Gallery/slajd13.jpg";
-import slajd14 from "../Pictures/Gallery/slajd14.jpg";
 import slajd15 from "../Pictures/Gallery/slajd15.jpg";
 import slajd16 from "../Pictures/Gallery/slajd16.jpg";
 import slajd17 from "../Pictures/Gallery/slajd17.jpg";
@@ -33,7 +32,6 @@ const images = [
   slajd11,
   slajd12,
   slajd13,
-  //slajd14,
   slajd15,
   slajd16,
   slajd17,

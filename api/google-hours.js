@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -27,6 +29,7 @@ export default async function handler(req, res) {
     const hours = data.result.opening_hours?.weekday_text || [];
     const openNow = data.result.opening_hours?.open_now ?? null;
 
+    res.setHeader("Cache-Control", "public, max-age=86400, must-revalidate");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
