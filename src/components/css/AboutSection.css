@@ -5,6 +5,7 @@
     rgba(209, 59, 31, 0.03) 100%
   );
   padding: 4rem 0;
+  overflow: hidden;
 }
 
 .about-container {
@@ -15,16 +16,24 @@
   z-index: 10;
 }
 
-.about-header {
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
   text-align: center;
-  margin-bottom: 4rem;
 }
 
 .about-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: #2b1c1a;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .about-description,
@@ -36,26 +45,90 @@
   margin: 0 auto 1.5rem;
 }
 
-.about-description strong {
-  font-weight: 600;
-  color: #d13b1f;
-}
-
 .about-motto {
   font-style: italic;
   font-size: 1.15rem;
   margin-bottom: 0;
 }
 
-.seo-keywords {
+.about-images {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  margin-top: 1rem;
+}
+
+.about-img {
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(43, 28, 26, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.img-main {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 280px;
+  z-index: 1;
+}
+
+.img-secondary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 65%;
+  height: 220px;
+  z-index: 2;
+  border: 6px solid #fdf8f6;
+}
+
+.about-images:hover .img-main {
+  transform: scale(1.03) translate(5px, -5px);
+}
+
+.about-images:hover .img-secondary {
+  transform: scale(1.05) translate(-5px, 5px);
+}
+
+@media (min-width: 992px) {
+  .about-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 4rem;
+  }
+
+  .about-text {
+    text-align: left;
+    padding-right: 2rem;
+  }
+
+  .about-title {
+    text-align: left;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .about-description,
+  .about-motto {
+    margin: 0 0 1.5rem 0;
+  }
+
+  .about-images {
+    margin-top: 0;
+    height: 450px;
+  }
+
+  .img-main {
+    height: 350px;
+  }
+
+  .img-secondary {
+    height: 280px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -70,5 +143,36 @@
   .about-description,
   .about-motto {
     font-size: 1.125rem;
+  }
+
+  .about-images {
+    height: 300px;
+  }
+
+  .img-main {
+    height: 240px;
+  }
+
+  .img-secondary {
+    height: 180px;
+    border-width: 4px;
+  }
+}
+@media (max-width: 768px) {
+  .about-section {
+    padding: 3rem 1rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-description,
+  .about-motto {
+    font-size: 1.125rem;
+  }
+
+  .about-images {
+    display: none;
   }
 }

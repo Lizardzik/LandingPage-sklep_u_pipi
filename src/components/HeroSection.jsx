@@ -17,7 +17,11 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="hero-section" id="hero">
+    <div
+      className="hero-section"
+      id="hero"
+      style={{ "--bg-image": "url('/LogoBanner.webp')" }}
+    >
       <div className="hero-background">
         <div className="hero-pattern hero-pattern-1"></div>
         <div className="hero-pattern hero-pattern-2"></div>
@@ -27,7 +31,7 @@ const HeroSection = () => {
         <div className="nav-container">
           <div className="nav-brand">
             <div className="nav-logo">
-              <img src="/smallLogo.png" alt="Logo" className="logo-image" />
+              <img src="/smallLogo.webp" alt="Logo" className="logo-image" />
             </div>
             <span className="brand-text">Sklep U Pipi</span>
           </div>
@@ -69,7 +73,6 @@ const HeroSection = () => {
             <span className="hero-title-motto">Szybkie i Tanie Zakupy</span>
           </h1>
           <p className="hero-subtitle">Codzienne zakupy w dobrej cenie</p>
-
           <div className="hero-buttons">
             <button
               className="btn btn-primary"
@@ -89,11 +92,6 @@ const HeroSection = () => {
               <span className="btn-arrow">→</span>
             </button>
           </div>
-        </div>
-      </div>
-      <div className="scroll-indicator">
-        <div className="scroll-mouse">
-          <div className="scroll-wheel"></div>
         </div>
       </div>
     </div>

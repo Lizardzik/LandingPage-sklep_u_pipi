@@ -1,6 +1,7 @@
 .hero-section {
-  background: linear-gradient(rgba(209, 59, 31, 0.3), rgba(232, 200, 117, 0.3)),
-    url("../../Pictures/LogoBanner.jpg");
+  background:
+    linear-gradient(rgba(209, 59, 31, 0.3), rgba(232, 200, 117, 0.3)),
+    var(--bg-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -61,13 +62,14 @@
   color: var(--white);
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(0, 0, 0, 0.8),
-    1px -1px 2px rgba(0, 0, 0, 0.8), -1px 1px 2px rgba(0, 0, 0, 0.8),
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.9),
+    -1px -1px 2px rgba(0, 0, 0, 0.8),
+    1px -1px 2px rgba(0, 0, 0, 0.8),
+    -1px 1px 2px rgba(0, 0, 0, 0.8),
     1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.hero-subtitle {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 2px rgba(0, 0, 0, 0.8);
-}
+
 .hero-title-motto {
   display: block;
   color: #e8c875;
@@ -83,23 +85,29 @@
 
 @keyframes glow {
   from {
-    text-shadow: 2px 2px 4px rgba(43, 28, 26, 0.7),
+    text-shadow:
+      2px 2px 4px rgba(43, 28, 26, 0.7),
       0 0 20px rgba(232, 200, 117, 0.3);
   }
   to {
-    text-shadow: 2px 2px 4px rgba(43, 28, 26, 0.7),
+    text-shadow:
+      2px 2px 4px rgba(43, 28, 26, 0.7),
       0 0 30px rgba(232, 200, 117, 0.6);
   }
 }
 
 .hero-subtitle {
-  font-size: clamp(1.125rem, 3vw, 1.5rem);
-  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  color: #f4f4f4;
+  font-weight: 500;
   margin-bottom: 3rem;
   max-width: 32rem;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
+  text-shadow:
+    2px 2px 5px rgba(0, 0, 0, 0.9),
+    -1px -1px 2px rgba(0, 0, 0, 0.9);
 }
 
 .hero-buttons {
@@ -111,62 +119,18 @@
   margin-bottom: 4rem;
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: bounce 2s infinite;
+.btn-secondary {
+  background: rgba(43, 28, 26, 0.7);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  font-weight: 700;
 }
 
-.scroll-mouse {
-  width: 1.5rem;
-  height: 2.5rem;
-  border: 2px solid rgba(36, 32, 32, 0.5);
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.scroll-wheel {
-  width: 0.25rem;
-  height: 0.75rem;
-  background: rgba(7, 7, 7, 0.7);
-  border-radius: 2px;
-  margin-top: 0.5rem;
-  animation: scroll-wheel 2s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-  60% {
-    transform: translateX(-50%) translateY(-5px);
-  }
-}
-
-@keyframes scroll-wheel {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btn-secondary:hover {
+  background: rgba(43, 28, 26, 0.95);
+  color: #e8c875;
+  border-color: #e8c875;
 }
 
 @media (max-width: 768px) {

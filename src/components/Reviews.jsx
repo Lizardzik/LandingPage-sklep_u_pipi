@@ -50,9 +50,11 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(4.5);
   const [hasError, setHasError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchGoogleReviews = async () => {
     try {
+      setLoading(true);
       const response = await fetch("/api/google-reviews");
 
       if (!response.ok) {
@@ -73,6 +75,8 @@ const Reviews = () => {
       console.error("Błąd podczas pobierania opinii:", error);
       setReviews([]);
       setHasError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -111,6 +115,19 @@ const Reviews = () => {
     const googleReviewUrl = "https://g.page/r/CaLR9b1QR5NmEAE/review";
     window.open(googleReviewUrl, "_blank");
   };
+
+  if (loading) {
+    return (
+      <section className="reviews-section common-section-padding">
+        <div className="reviews-container">
+          <div className="reviews-loading">
+            <div className="loading-spinner"></div>
+            <p className="reviews-note">Pobieranie opinii z Google...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (hasError || reviews.length === 0) {
     return null;

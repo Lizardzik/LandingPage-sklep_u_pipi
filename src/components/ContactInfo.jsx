@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "../components/css/ContactInfo.css";
 
+const SHOP_LOCATION = {
+  address: "Groń, ul.Kobylarzówka 74, 34-406 Groń-Leśnica",
+  coordinates: "49.4227961,20.0878596",
+  googleMapsUrl:
+    "https://www.google.com/maps/place/Sklep+u+Pipi/@49.4227961,20.0878596,17z",
+  iframeUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.5!2d20.0878596!3d49.4227961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4715fa87d688edf3:0x66934750bdf5d1a2!2sSklep+u+Pipi!5e0!3m2!1spl!2spl!4v1",
+};
+
 const fetchServicesFromAPI = async () => {
   await new Promise((resolve) => setTimeout(resolve, 500));
-
   return [
     "Bezpłatny parking przed sklepem",
     "Piwo oraz nalewki regionalne",
-    "Dostęp dla osób niepełnosprawnych",
+    "Pamiątki lokalne",
+    "Ciepłe i świeże hot-dogi",
     "Odbiór osobisty z punktu Orlen Paczka, Allegro One",
     "Możliwość wysyłki przez Orlen Paczka",
     "Płatność kartą, BLIK-iem i gotówką",
@@ -28,13 +37,9 @@ const ServicesList = () => {
     });
   }, []);
 
-  if (loading) {
-    return <p className="services-loading">Ładowanie usług...</p>;
-  }
-
-  if (services.length === 0) {
+  if (loading) return <p className="services-loading">Ładowanie usług...</p>;
+  if (services.length === 0)
     return <p className="services-loading">Brak dostępnych usług.</p>;
-  }
 
   return (
     <ul className="services-list">
@@ -46,32 +51,27 @@ const ServicesList = () => {
 };
 
 const ContactInfo = () => {
-  const address = "Groń, ul.Kobylarzówka 74, 34-406 Groń-Leśnica";
-  const coordinates = "49.4227961,20.0878596";
-  const mapsUrl =
-    "https://www.google.com/maps/place/Sklep+u+Pipi/@49.4227961,20.0878596,17z";
-
   const openNavigation = () => {
     const isMobile =
       /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
+        navigator.userAgent,
       );
 
     if (isMobile) {
       window.open(
-        `https://maps.google.com/maps?daddr=$$${coordinates}`,
-        "_blank"
+        `https://maps.google.com/maps?daddr=${SHOP_LOCATION.coordinates}`,
+        "_blank",
       );
     } else {
       window.open(
-        `https://www.google.com/maps/dir/?api=1&destination=$$${coordinates}`,
-        "_blank"
+        `https://www.google.com/maps/dir/?api=1&destination=${SHOP_LOCATION.coordinates}`,
+        "_blank",
       );
     }
   };
 
   const openGoogleMaps = () => {
-    window.open(mapsUrl, "_blank");
+    window.open(SHOP_LOCATION.googleMapsUrl, "_blank");
   };
 
   return (
@@ -97,7 +97,7 @@ const ContactInfo = () => {
                 </div>
                 <div className="contact-details">
                   <h3>Nasz Adres</h3>
-                  <p className="contact-address">{address}</p>
+                  <p className="contact-address">{SHOP_LOCATION.address}</p>
                   <div className="contact-buttons">
                     <button
                       className="contact-btn btn-primary"
@@ -160,7 +160,7 @@ const ContactInfo = () => {
           <div className="map-container">
             <div className="map-wrapper">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.5!2d20.0878596!3d49.4227961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4715fa87d688edf3:0x66934750bdf5d1a2!2sSklep+u+Pipi!5e0!3m2!1spl!2spl!4v1"
+                src={SHOP_LOCATION.iframeUrl}
                 width="100%"
                 height="100%"
                 className="map-iframe"

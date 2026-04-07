@@ -6,6 +6,7 @@ const HoursSection = () => {
   const [hours, setHours] = useState([]);
   const [openStatus, setOpenStatus] = useState(null);
   const [hasError, setHasError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getCurrentDayName = () => {
     const days = [
@@ -21,7 +22,7 @@ const HoursSection = () => {
   };
 
   const parseTime = (timeStr) => {
-    const match = timeStr.match(/(\d{1,2}):(\d{2})/);
+    const match = timeStr.trim().match(/(\d{1,2}):(\d{2})/);
     if (match) {
       return parseInt(match[1]) * 60 + parseInt(match[2]);
     }
@@ -35,17 +36,18 @@ const HoursSection = () => {
     const now = new Date();
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-    const todayHoursLine = allHours.find(
-      (line) => line.split(":")[0].trim().toLowerCase() === currentDayName
+    const todayHoursLine = allHours.find((line) =>
+      line.toLowerCase().startsWith(currentDayName),
     );
 
     if (!todayHoursLine) {
       return false;
     }
 
-    const timeRange = todayHoursLine
-      .substring(todayHoursLine.indexOf(":") + 1)
-      .trim();
+    const timeParts = todayHoursLine.split(":");
+    if (timeParts.length < 2) return false;
+
+    const timeRange = timeParts.slice(1).join(":").trim();
 
     if (
       timeRange.toLowerCase().includes("zamknięte") ||
@@ -54,18 +56,14 @@ const HoursSection = () => {
       return false;
     }
 
-    const timeParts = timeRange.split(/[\–-]/).map((t) => t.trim());
+    const rangeLimits = timeRange.split(/[-–]/).map((t) => t.trim());
 
-    if (timeParts.length === 2) {
-      const [openTimeStr, closeTimeStr] = timeParts;
-
-      const openMinutes = parseTime(openTimeStr);
-      const closeMinutes = parseTime(closeTimeStr);
+    if (rangeLimits.length === 2) {
+      const openMinutes = parseTime(rangeLimits[0]);
+      const closeMinutes = parseTime(rangeLimits[1]);
 
       if (openMinutes !== null && closeMinutes !== null) {
-        if (openMinutes <= currentMinutes && currentMinutes < closeMinutes) {
-          return true;
-        }
+        return currentMinutes >= openMinutes && currentMinutes < closeMinutes;
       }
     }
 
@@ -74,10 +72,11 @@ const HoursSection = () => {
 
   const fetchGoogleHours = async () => {
     try {
+      setLoading(true);
       const response = await fetch("/api/google-hours");
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Błąd sieci: ${response.status}`);
       }
 
       const data = await response.json();
@@ -94,6 +93,8 @@ const HoursSection = () => {
       console.error("Błąd pobierania godzin:", error);
       setHours([]);
       setHasError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -101,9 +102,12 @@ const HoursSection = () => {
     fetchGoogleHours();
 
     const intervalId = setInterval(() => {
-      if (hours.length > 0) {
-        setOpenStatus(calculateOpenStatus(hours));
-      }
+      setHours((currentHours) => {
+        if (currentHours.length > 0) {
+          setOpenStatus(calculateOpenStatus(currentHours));
+        }
+        return currentHours;
+      });
     }, 60000);
 
     return () => clearInterval(intervalId);
@@ -135,7 +139,7 @@ const HoursSection = () => {
             <div className="hours-card-header">
               <Clock className="hours-icon" />
               <h3 className="hours-card-title">Godziny Otwarcia</h3>
-              {openStatus !== null && !hasError && (
+              {openStatus !== null && !hasError && !loading && (
                 <div
                   className={`shop-status ${
                     openStatus ? "shop-open" : "shop-closed"
@@ -157,17 +161,48 @@ const HoursSection = () => {
             </div>
 
             <div className="hours-list">
-              {hasError ? (
-                <p className="hours-error">
-                  Ojej, mamy problem z pobraniem danych.{" "}
-                  <a href={googleMapsUrl} target="_blank" rel="noreferrer">
+              {loading ? (
+                <div
+                  style={{
+                    padding: "3rem",
+                    textAlign: "center",
+                    color: "rgba(43, 28, 26, 0.7)",
+                  }}
+                >
+                  Sprawdzanie godzin otwarcia...
+                </div>
+              ) : hasError ? (
+                <p
+                  className="hours-error"
+                  style={{ padding: "2rem", textAlign: "center" }}
+                >
+                  Ojej, mamy problem z pobraniem danych. <br />
+                  <br />
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: "#d13b1f", textDecoration: "underline" }}
+                  >
                     Zobacz godziny otwarcia na Google Maps
-                    <ExternalLink className="hours-link-icon" />
+                    <ExternalLink
+                      className="hours-link-icon"
+                      style={{
+                        width: "1rem",
+                        height: "1rem",
+                        marginLeft: "0.5rem",
+                      }}
+                    />
                   </a>
                 </p>
               ) : (
                 hours.map((line, index) => {
-                  const [day, time] = line.split(": ");
+                  const parts = line.split(":");
+                  if (parts.length < 2) return null;
+
+                  const day = parts[0].trim();
+                  const time = parts.slice(1).join(":").trim();
+
                   const isToday = day.toLowerCase() === currentDay;
                   const isDayClosed = isClosed(time);
 

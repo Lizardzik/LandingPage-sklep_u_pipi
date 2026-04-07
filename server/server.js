@@ -33,7 +33,7 @@ app.get("/api/google-reviews", async (req, res) => {
 
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating&key=${apiKey}&reviews_sort=newest&reviews_no_translations=true`
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating&key=${apiKey}&reviews_sort=newest&reviews_no_translations=true`,
     );
 
     const data = await response.json();
@@ -83,7 +83,7 @@ app.get("/api/google-hours", async (req, res) => {
 
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=opening_hours&language=pl&region=pl&key=${apiKey}`
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=opening_hours&language=pl&region=pl&key=${apiKey}`,
     );
 
     const data = await response.json();
@@ -108,6 +108,27 @@ app.get("/api/google-hours", async (req, res) => {
   } catch (error) {
     console.error("BŁĄD SERWERA (Hours):", error);
     res.status(500).json({ error: "Błąd serwera", details: error.message });
+  }
+});
+
+app.get("/api/occasions", async (req, res) => {
+  try {
+    const url = process.env.CSV_URL;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Google odpowiedziało błędem: ${response.status}`);
+    }
+
+    const text = await response.text();
+    res.status(200).send(text);
+  } catch (error) {
+    console.error("BŁĄD SERWERA (Occasions):", error.message);
+    res.status(500).json({
+      error: "Błąd serwera przy pobieraniu arkusza",
+      details: error.message,
+    });
   }
 });
 

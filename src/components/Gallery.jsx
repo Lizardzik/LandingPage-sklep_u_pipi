@@ -1,41 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../components/css/Gallery.css";
 
-import slajd1 from "../Pictures/Gallery/slajd1.jpg";
-import slajd2 from "../Pictures/Gallery/slajd2.jpg";
-import slajd3 from "../Pictures/Gallery/slajd3.jpg";
-import slajd4 from "../Pictures/Gallery/slajd4.jpg";
-import slajd5 from "../Pictures/Gallery/slajd5.jpg";
-import slajd6 from "../Pictures/Gallery/slajd6.jpg";
-import slajd7 from "../Pictures/Gallery/slajd7.jpg";
-import slajd8 from "../Pictures/Gallery/slajd8.jpg";
-import slajd9 from "../Pictures/Gallery/slajd9.jpg";
-import slajd10 from "../Pictures/Gallery/slajd10.jpg";
-import slajd11 from "../Pictures/Gallery/slajd11.jpg";
-import slajd12 from "../Pictures/Gallery/slajd12.jpg";
-import slajd13 from "../Pictures/Gallery/slajd13.jpg";
-import slajd15 from "../Pictures/Gallery/slajd15.jpg";
-import slajd16 from "../Pictures/Gallery/slajd16.jpg";
-import slajd17 from "../Pictures/Gallery/slajd17.jpg";
-
-const images = [
-  slajd1,
-  slajd2,
-  slajd3,
-  slajd4,
-  slajd5,
-  slajd6,
-  slajd7,
-  slajd8,
-  slajd9,
-  slajd10,
-  slajd11,
-  slajd12,
-  slajd13,
-  slajd15,
-  slajd16,
-  slajd17,
-];
+const imageNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15];
+const images = imageNumbers.map((num) => `/Gallery/slajd${num}.webp`);
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -67,7 +34,7 @@ const Gallery = () => {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? length - 1 : prevIndex - 1
+      prevIndex === 0 ? length - 1 : prevIndex - 1,
     );
   };
 
@@ -86,8 +53,8 @@ const Gallery = () => {
   };
 
   return (
-    <section className="gallery-section common-section-padding">
-      <h2 className="common-section-title">Nasza galeria</h2>
+    <section className="gallery-section common-section-padding" id="assortment">
+      <h2 className="common-section-title">Nasz asortyment</h2>
 
       <div className="gallery-container">
         <button
@@ -104,6 +71,8 @@ const Gallery = () => {
               key={index}
               src={img}
               alt={`slide ${index + 1}`}
+              title="Kliknij, aby zobaczyć pełne zdjęcie"
+              loading="lazy"
               className={`slide-image ${
                 index === currentIndex ? "active" : ""
               }`}
