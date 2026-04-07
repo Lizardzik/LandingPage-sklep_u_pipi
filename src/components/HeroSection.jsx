@@ -37,25 +37,54 @@ const HeroSection = () => {
           </div>
 
           <div className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <a onClick={() => scrollToSection("hero")} className="nav-link">
+            <a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("hero");
+              }}
+              className="nav-link"
+            >
               Strona Główna
             </a>
             <a
-              onClick={() => scrollToSection("assortment")}
+              href="#assortment"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("assortment");
+              }}
               className="nav-link"
             >
               Asortyment
             </a>
-            <a onClick={() => scrollToSection("hours")} className="nav-link">
+            <a
+              href="#hours"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("hours");
+              }}
+              className="nav-link"
+            >
               Godziny
             </a>
             <a
-              onClick={() => scrollToSection("occasions")}
+              href="#occasions"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("occasions");
+              }}
               className="nav-link"
             >
               Okazje cenowe
             </a>
-            <a onClick={() => scrollToSection("contact")} className="nav-link">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact");
+              }}
+              className="nav-link"
+            >
               Kontakt
             </a>
           </div>
