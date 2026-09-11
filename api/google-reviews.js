@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating&key=${apiKey}&reviews_sort=newest&reviews_no_translations=true`
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating,user_ratings_total&key=${apiKey}&reviews_sort=newest&reviews_no_translations=true`,
     );
 
     const data = await response.json();
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Błąd Google API", details: data });
     }
 
-    const filteredReviews = data.result.reviews
+    const filteredReviews = (data.result.reviews || [])
       .filter((r) => r.rating >= 3)
       .slice(0, 3)
       .map((r) => ({
@@ -38,13 +38,17 @@ export default async function handler(req, res) {
           .join(""),
       }));
 
-    res.setHeader("Cache-Control", "public, max-age=86400, must-revalidate");
+    res.setHeader(
+      "Cache-Control",
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate",
+    );
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
     res.status(200).json({
       averageRating: data.result.rating,
+      totalReviews: data.result.user_ratings_total || 0,
       reviews: filteredReviews,
     });
   } catch (error) {

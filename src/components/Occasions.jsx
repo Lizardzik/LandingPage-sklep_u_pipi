@@ -8,6 +8,14 @@ const Occasions = () => {
   const [loading, setLoading] = useState(true);
   const [isFading, setIsFading] = useState(false);
 
+  // Funkcja czyszcząca i wyciągająca liczbę do wyliczenia rabatu
+  const parsePriceNumber = (priceStr) => {
+    if (!priceStr) return null;
+    const clean = priceStr.replace(",", ".").replace(/[^0-9.]/g, "");
+    const num = parseFloat(clean);
+    return isNaN(num) ? null : num;
+  };
+
   useEffect(() => {
     const fetchOccasions = async () => {
       try {
@@ -23,9 +31,22 @@ const Occasions = () => {
           .filter((row) => row.trim() !== "")
           .map((row) => {
             const cols = row.split(",");
+            const currentPriceStr = cols[1]?.trim() || "";
+            const oldPriceStr = cols[4]?.trim() || "";
+
+            const currentNum = parsePriceNumber(currentPriceStr);
+            const oldNum = parsePriceNumber(oldPriceStr);
+
+            let discount = null;
+            if (oldNum && currentNum && oldNum > currentNum) {
+              discount = Math.round(((oldNum - currentNum) / oldNum) * 100);
+            }
+
             return {
               title: cols[0]?.trim(),
-              price: cols[1]?.trim(),
+              price: currentPriceStr,
+              oldPrice: oldPriceStr,
+              discount: discount,
               category: cols[2]?.trim(),
               imageUrl: cols[3]?.trim(),
             };
@@ -79,6 +100,9 @@ const Occasions = () => {
   const ProductCard = ({ item }) => (
     <div className="occasion-card">
       <div className="occasion-image-wrapper">
+        {item.discount && (
+          <span className="occasion-badge">-{item.discount}%</span>
+        )}
         {item.imageUrl ? (
           <img
             src={item.imageUrl}
@@ -97,7 +121,12 @@ const Occasions = () => {
       <div className="occasion-content">
         <span className="occasion-category">{item.category}</span>
         <h3 className="occasion-title">{item.title}</h3>
-        <p className="occasion-price">{item.price}</p>
+        <div className="occasion-prices-box">
+          {item.oldPrice && (
+            <span className="occasion-old-price">{item.oldPrice}</span>
+          )}
+          <span className="occasion-price">{item.price}</span>
+        </div>
       </div>
     </div>
   );
@@ -157,10 +186,18 @@ const Occasions = () => {
               &times;
             </button>
             <h2 className="common-section-title">Wszystkie okazje</h2>
+
             <div className="occasions-modal-grid">
               {okazje.map((item, index) => (
                 <ProductCard key={`modal-${index}`} item={item} />
               ))}
+
+              {/* Przycisk na samym dole po przewinięciu */}
+              <div className="occasions-modal-bottom-action">
+                <button className="btn-modal-bottom-close" onClick={closeModal}>
+                  Zamknij
+                </button>
+              </div>
             </div>
           </div>
         </div>

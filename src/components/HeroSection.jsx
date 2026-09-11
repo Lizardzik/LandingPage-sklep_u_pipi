@@ -17,16 +17,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div
-      className="hero-section"
-      id="hero"
-      style={{ "--bg-image": "url('/LogoBanner.webp')" }}
-    >
-      <div className="hero-background">
-        <div className="hero-pattern hero-pattern-1"></div>
-        <div className="hero-pattern hero-pattern-2"></div>
-      </div>
-
+    <header className="hero-clean" id="hero">
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-brand">
@@ -95,35 +86,57 @@ const HeroSection = () => {
         </div>
       </nav>
 
-      <div className="hero-content">
-        <div className="hero-text">
-          <h1 className="hero-title">
-            Sklep U Pipi
-            <span className="hero-title-motto">Szybkie i Tanie Zakupy</span>
-          </h1>
-          <p className="hero-subtitle">Codzienne zakupy w dobrej cenie</p>
-          <div className="hero-buttons">
-            <button
-              className="btn btn-primary"
-              onClick={() => scrollToSection("assortment")}
-            >
-              <span className="btn-icon">🛍️</span>
-              <span>Zobacz Asortyment</span>
-              <span className="btn-arrow">→</span>
-            </button>
+      <div className="hero-clean-container">
+        <span className="hero-badge">Twój lokalny sklep w okolicy</span>
+        <h1 className="hero-clean-title">
+          Sklep Spożywczo-Przemysłowy
+          <span className="hero-highlight">„U Pipi”</span>
+        </h1>
+        <p className="hero-clean-subtitle">
+          Szybkie i tanie zakupy na co dzień. Świeże pieczywo, nabiał i artykuły
+          domowe w dobrych cenach.
+        </p>
 
-            <button
-              className="btn btn-secondary"
-              onClick={() => scrollToSection("hours")}
-            >
-              <span className="btn-icon">🕒</span>
-              <span>Zobacz Godziny Otwarcia</span>
-              <span className="btn-arrow">→</span>
-            </button>
+        <div className="hero-clean-buttons">
+          <button
+            className="btn btn-red"
+            onClick={() => scrollToSection("assortment")}
+          >
+            <span>Zobacz Asortyment</span>
+            <span>→</span>
+          </button>
+
+          <button
+            className="btn btn-dark"
+            onClick={() => scrollToSection("hours")}
+          >
+            <span>Godziny Otwarcia</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <div className="hero-summary-strip">
+          <div className="summary-item">
+            <span className="summary-label">Asortyment</span>
+            <span className="summary-value">
+              Świeże pieczywo, nabiał i chemia domowa
+            </span>
+          </div>
+          <div className="summary-divider"></div>
+          <div className="summary-item">
+            <span className="summary-label">Płatności</span>
+            <span className="summary-value">Karta, BLIK oraz gotówka</span>
+          </div>
+          <div className="summary-divider"></div>
+          <div className="summary-item">
+            <span className="summary-label">Dojazd</span>
+            <span className="summary-value">
+              Wygodny parking bezpośrednio pod sklepem
+            </span>
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

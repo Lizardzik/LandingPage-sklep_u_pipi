@@ -49,13 +49,16 @@ const EmptyStarSVG = () => (
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(4.5);
+  const [totalReviews, setTotalReviews] = useState(0);
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchGoogleReviews = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/google-reviews");
+      const response = await fetch(
+        `/api/google-reviews?t=${new Date().getDate()}`,
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -66,6 +69,7 @@ const Reviews = () => {
       if (data && Array.isArray(data.reviews) && data.reviews.length > 0) {
         setReviews(data.reviews);
         setAverageRating(data.averageRating || 4.5);
+        setTotalReviews(data.totalReviews || 0);
         setHasError(false);
       } else {
         setReviews([]);
@@ -143,6 +147,9 @@ const Reviews = () => {
             <div className="rating-stars">{renderStars(averageRating)}</div>
             <span className="rating-number">{averageRating}</span>
             <span className="rating-source">na Google</span>
+            {totalReviews > 0 && (
+              <span className="rating-count">({totalReviews} opinii)</span>
+            )}
           </div>
         </div>
 
@@ -182,10 +189,9 @@ const Reviews = () => {
             className="google-reviews-btn"
             onClick={handleGoogleReviewClick}
           >
-            <span className="btn-icon">🔗</span>
-            Zobacz więcej opinii na Google
+            Wystaw opinię na Google
           </button>
-          <p className="reviews-note">Twoja opinia jest ważna!</p>
+          <p className="reviews-note">Twoja opinia jest dla nas ważna!</p>
         </div>
       </div>
     </section>

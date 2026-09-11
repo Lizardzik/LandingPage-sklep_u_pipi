@@ -277,7 +277,11 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-
+  .rating-count {
+    font-size: 0.95rem;
+    color: #666;
+    margin-left: 6px;
+  }
   .reviews-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;

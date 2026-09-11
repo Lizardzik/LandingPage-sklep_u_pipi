@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Clock, Info, ExternalLink } from "lucide-react";
+import { Clock, ExternalLink } from "lucide-react";
 import "../components/css/HoursSection.css";
 
 const HoursSection = () => {
@@ -111,7 +111,6 @@ const HoursSection = () => {
     }, 60000);
 
     return () => clearInterval(intervalId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const currentDay = getCurrentDayName();
@@ -232,18 +231,6 @@ const HoursSection = () => {
                   );
                 })
               )}
-            </div>
-          </div>
-
-          <div className="hours-info">
-            <div className="hours-info-content">
-              <Info className="hours-info-icon" />
-              <div className="hours-info-text">
-                <h4 className="hours-info-title">Informacje dodatkowe</h4>
-                <p className="hours-info-description">
-                  Aktualne informacje zawsze dostępne w sklepie.
-                </p>
-              </div>
             </div>
           </div>
         </div>

@@ -18,6 +18,8 @@ const calculateDailyExpiry = () => {
 const cache = {
   reviews: { data: null, expiry: 0 },
   hours: { data: null, expiry: 0 },
+  occasions: { data: null, expiry: 0 },
+  gallery: { data: null, expiry: 0 },
 };
 
 app.use(cors());
@@ -33,7 +35,7 @@ app.get("/api/google-reviews", async (req, res) => {
 
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating&key=${apiKey}&reviews_sort=newest&reviews_no_translations=true`,
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating,user_ratings_total&key=${apiKey}&reviews_sort=newest&reviews_no_translations=true`,
     );
 
     const data = await response.json();
@@ -43,7 +45,7 @@ app.get("/api/google-reviews", async (req, res) => {
       return res.status(500).json({ error: "Błąd Google API", details: data });
     }
 
-    const filteredReviews = data.result.reviews
+    const filteredReviews = (data.result.reviews || [])
       .filter((r) => r.rating >= 3)
       .slice(0, 3)
       .map((r) => ({
@@ -59,6 +61,7 @@ app.get("/api/google-reviews", async (req, res) => {
 
     const result = {
       averageRating: data.result.rating,
+      totalReviews: data.result.user_ratings_total || 0,
       reviews: filteredReviews,
     };
 
@@ -112,23 +115,86 @@ app.get("/api/google-hours", async (req, res) => {
 });
 
 app.get("/api/occasions", async (req, res) => {
+  const now = Date.now();
+
+  if (cache.occasions.data && cache.occasions.expiry > now) {
+    return res.status(200).send(cache.occasions.data);
+  }
+
   try {
     const url = process.env.CSV_URL;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      },
+    });
 
     if (!response.ok) {
+      if (cache.occasions.data) {
+        return res.status(200).send(cache.occasions.data);
+      }
       throw new Error(`Google odpowiedziało błędem: ${response.status}`);
     }
 
     const text = await response.text();
+
+    // Cache na 10 minut
+    cache.occasions.data = text;
+    cache.occasions.expiry = now + 10 * 60 * 1000;
+
     res.status(200).send(text);
   } catch (error) {
     console.error("BŁĄD SERWERA (Occasions):", error.message);
+
+    if (cache.occasions.data) {
+      return res.status(200).send(cache.occasions.data);
+    }
+
     res.status(500).json({
       error: "Błąd serwera przy pobieraniu arkusza",
       details: error.message,
     });
+  }
+});
+
+app.get("/api/gallery", async (req, res) => {
+  const now = Date.now();
+
+  if (cache.gallery.data && cache.gallery.expiry > now) {
+    return res.status(200).send(cache.gallery.data);
+  }
+
+  try {
+    const url = process.env.GALLERY_CSV_URL;
+    if (!url) {
+      return res
+        .status(500)
+        .json({ error: "Brak GALLERY_CSV_URL w pliku server/.env" });
+    }
+
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      },
+    });
+
+    if (!response.ok) {
+      if (cache.gallery.data) return res.status(200).send(cache.gallery.data);
+      throw new Error(`Google odpowiedziało błędem: ${response.status}`);
+    }
+
+    const text = await response.text();
+    cache.gallery.data = text;
+    cache.gallery.expiry = now + 10 * 60 * 1000;
+
+    res.status(200).send(text);
+  } catch (error) {
+    console.error("BŁĄD SERWERA (Gallery):", error.message);
+    if (cache.gallery.data) return res.status(200).send(cache.gallery.data);
+    res.status(500).json({ error: "Błąd serwera przy pobieraniu galerii" });
   }
 });
 
