@@ -32,7 +32,6 @@
   background: #ffffff;
   border-radius: 18px;
   box-shadow: 0 6px 24px rgba(43, 28, 26, 0.08);
-  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
@@ -45,6 +44,8 @@
   justify-content: center;
   flex-direction: column;
   gap: 0.75rem;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
 }
 
 .hours-icon {
@@ -60,7 +61,6 @@
   margin: 0;
 }
 
-/* Status otwarte/zamknięte */
 .shop-status {
   display: inline-flex;
   align-items: center;
@@ -110,33 +110,41 @@
 
 .hours-list {
   background: #ffffff;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.75rem 1rem 0.75rem;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  box-sizing: border-box;
 }
 
 .hours-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.9rem 1.75rem;
+  padding: 0.9rem 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s ease;
+  box-sizing: border-box;
+  height: auto !important;
+  min-height: unset !important;
 }
 
 .hours-item:last-child {
   border-bottom: none;
 }
 
-/* Wyróżnienie bieżącego dnia */
-.hours-item-current {
+.hours-item.hours-item-current {
   background-color: rgba(209, 59, 31, 0.08);
-  border: 2px solid #d13b1f;
+  border: 2px solid #d13b1f !important;
+  border-bottom: 2px solid #d13b1f !important;
   border-radius: 12px;
-  margin: 0.4rem 0.75rem;
-  padding: 0.9rem 1.25rem;
+  margin: 0.4rem 0 !important;
+  padding: 0.85rem 1.25rem;
+  box-sizing: border-box;
+  overflow: visible !important;
 }
 
 .hours-day {
-  font-weight: 500;
+  font-weight: 600;
   color: #2b1c1a;
   text-transform: capitalize;
   font-size: 1rem;
@@ -147,13 +155,13 @@
   color: #d13b1f;
 }
 
-/* Nowoczesna, czysta czcionka godzin */
 .hours-time {
   font-family: inherit;
   font-weight: 600;
   font-size: 0.95rem;
   color: #555555;
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .hours-item-current .hours-time {
@@ -167,11 +175,17 @@
 
 @media (max-width: 480px) {
   .hours-item {
-    padding: 0.85rem 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.85rem 1rem;
   }
 
-  .hours-item-current {
-    margin: 0.4rem 0.5rem;
+  .hours-item.hours-item-current {
     padding: 0.85rem 1rem;
+  }
+
+  .hours-time {
+    font-size: 0.9rem;
   }
 }

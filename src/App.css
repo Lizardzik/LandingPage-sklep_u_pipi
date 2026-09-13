@@ -259,18 +259,53 @@ body.no-scroll {
 }
 
 .app-footer {
-  padding: 0.75rem 0;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background: var(--gradient-section);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+  padding: 1.5rem 0;
+  background: var(--bg-cream);
+  border-top: 1px solid rgba(43, 28, 26, 0.08);
+  box-sizing: border-box;
 }
 
 .app-footer-content {
-  color: #000;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  box-sizing: border-box;
+}
+.footer-copy,
+.footer-author {
+  margin: 0;
+  font-weight: 500;
 }
 
+.author-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.15s ease;
+}
+
+.author-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .app-footer {
+    padding: 1.25rem 0;
+  }
+
+  .app-footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
 @media (min-width: 640px) {
   .hero-buttons {
     flex-direction: row;
